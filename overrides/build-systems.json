@@ -14110,6 +14110,11 @@
     "jupyter-packaging",
     "versioneer"
   ],
+  "nh3": [
+    "maturin",
+    "poetry-core",
+    "setuptools"
+  ],
   "niaaml": [
     "poetry-core"
   ],
