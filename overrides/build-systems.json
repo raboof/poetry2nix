@@ -5731,7 +5731,7 @@
     "setuptools"
   ],
   "django-stubs": [
-    "setuptools"
+    "hatchling"
   ],
   "django-stubs-ext": [
     "hatchling"
