@@ -588,6 +588,8 @@ lib.composeManyExtensions [
       cryptography =
         let
           getCargoHash = version: {
+            # These have been updated since the switch to fetchCargoVender:
+            "44.0.1" = "sha256-hjfSjmwd/mylVZKyXsj/pP2KvAGDpfthuT+w219HAiA=";
             # These should likely still be updated since the update to fetchCargoVendor:
             "35.0.0" = "sha256-tQoQfo+TAoqAea86YFxyj/LNQCiViu5ij/3wj7ZnYLI=";
             "36.0.0" = "sha256-Y6TuW7AryVgSvZ6G8WNoDIvi+0tvx8ZlEYF5qB0jfNk=";
@@ -622,7 +624,6 @@ lib.composeManyExtensions [
             "43.0.1" = "sha256-wiAHM0ucR1X7GunZX8V0Jk2Hsi+dVdGgDKqcYjSdD7Q=";
             "43.0.3" = "sha256-d3Gt4VrBWk6qowwX0Epp4mc1PbySARVU9YMsHYKImCs=";
             "44.0.0" = "sha256-LJIY2O8ul36JQmhiW8VhLCQ0BaX+j+HGr3e8RUkZpc8=";
-            "44.0.1" = "sha256-6inZ5HEnQmW5U+H+QG5eRHHdnYYnUQPXNvx6iBGXlOk=";
             "44.0.2" = "sha256-A3A9IiwcqZGSxpChsWuCquG1DNgiOzayWp43DY3lMXc=";
           }.${version} or (
             lib.warn "Unknown cryptography version: '${version}'. Please update getCargoHash." lib.fakeHash
@@ -3299,6 +3300,8 @@ lib.composeManyExtensions [
       rpds-py =
         let
           getCargoHash = version: {
+            # These have been updated since the switch to fetchCargoVender:
+            "0.27.0" = "sha256-jg9oos4wqewIHe31c3DixIp6fssk742kqt4taWyOq4U=";
             # These should likely still be updated since the update to fetchCargoVendor:
             "0.8.8" = "sha256-jg9oos4wqewIHe31c3DixIp6fssk742kqt4taWyOq4U=";
             "0.8.10" = "sha256-D4pbEipVn1r5rrX+wDXi97nDZJyBlkdqhmbJSgQGTLU=";
