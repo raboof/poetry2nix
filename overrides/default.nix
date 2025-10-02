@@ -2400,10 +2400,6 @@ lib.composeManyExtensions [
         }
       );
 
-      pydantic-core = prev.pydantic-core.override {
-        preferWheel = true;
-      };
-
       py-solc-x = prev.py-solc-x.overridePythonAttrs (
         old: {
           preConfigure = ''
