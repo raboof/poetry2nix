@@ -7186,6 +7186,9 @@
   "flake8-import-order": [
     "setuptools"
   ],
+  "flake8-isort": [
+    "hatchling"
+  ],
   "flake8-length": [
     "flit-core",
     "setuptools"
