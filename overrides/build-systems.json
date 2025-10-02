@@ -2524,7 +2524,7 @@
     "setuptools"
   ],
   "beartype": [
-    "setuptools"
+    "hatchling"
   ],
   "beautifulsoup4": [
     "hatchling",
