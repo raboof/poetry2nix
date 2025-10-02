@@ -20787,7 +20787,6 @@
     "setuptools"
   ],
   "pyyaml": [
-    "cython_0",
     "setuptools"
   ],
   "pyyaml-env-tag": [
