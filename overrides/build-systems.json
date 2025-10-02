@@ -9113,6 +9113,9 @@
     "poetry",
     "poetry-core"
   ],
+  "html-to-markdown": [
+    "setuptools"
+  ],
   "html-void-elements": [
     "poetry",
     "poetry-core"
