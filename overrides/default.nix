@@ -356,13 +356,15 @@ lib.composeManyExtensions [
       bcrypt =
         let
           getCargoHash = version: {
+            # These have been updated since the switch to fetchCargoVender:
+            "4.2.1" = "sha256-tCeXgypF5Tqnzv7KfoliUZeO6B83YK5cYORhwlvBVnY=";
+            # These should likely still be updated:
             "4.0.0" = "sha256-HvfRLyUhlXVuvxWrtSDKx3rMKJbjvuiMcDY6g+pYFS0=";
             "4.0.1" = "sha256-lDWX69YENZFMu7pyBmavUZaalGvFqbHSHfkwkzmDQaY=";
             "4.1.1" = "sha256-QYg1+DsZEdXB74vuS4SFvV0n5GXkuwHkOS9j1ogSTjA=";
             "4.1.2" = "sha256-fTD1AKvyeni5ukYjK53gueKLey+rcIUjW/0R289xeb0=";
             "4.1.3" = "sha256-Uag1pUuis5lpnus2p5UrMLa4HP7VQLhKxR5TEMfpK0s=";
             "4.2.0" = "sha256-dOS9A3pTwXYkzPFFNh5emxJw7pSdDyY+mNIoHdwNdmg=";
-            "4.2.1" = "sha256-vbGF0oOhEDg3QIyQ0lASqbWtTWXiPAmGMnlF9I+hU78=";
             "4.3.0" = "sha256-92MEpnrUhdqpgMuXicy9c5gfdXYY0eq5Ak9fvNXAgMk=";
           }.${version} or (
             lib.warn "Unknown bcrypt version: '${version}'. Please update getCargoHash." lib.fakeHash
@@ -379,12 +381,12 @@ lib.composeManyExtensions [
                 ++ lib.optionals (lib.versionAtLeast old.version "4") [ rustc cargo pkgs.rustPlatform.cargoSetupHook final.setuptools-rust ];
           } // lib.optionalAttrs (lib.versionAtLeast old.version "4") {
             cargoDeps =
-              pkgs.rustPlatform.fetchCargoTarball
+              pkgs.rustPlatform.fetchCargoVendor
                 {
                   inherit (old) src;
                   sourceRoot = "${old.pname}-${old.version}/src/_bcrypt";
                   name = "${old.pname}-${old.version}";
-                  sha256 = getCargoHash old.version;
+                  hash = getCargoHash old.version;
                 };
             cargoRoot = "src/_bcrypt";
           }
@@ -586,6 +588,7 @@ lib.composeManyExtensions [
       cryptography =
         let
           getCargoHash = version: {
+            # These should likely still be updated since the update to fetchCargoVendor:
             "35.0.0" = "sha256-tQoQfo+TAoqAea86YFxyj/LNQCiViu5ij/3wj7ZnYLI=";
             "36.0.0" = "sha256-Y6TuW7AryVgSvZ6G8WNoDIvi+0tvx8ZlEYF5qB0jfNk=";
             "36.0.1" = "sha256-kozYXkqt1Wpqyo9GYCwN08J+zV92ZWFJY/f+rulxmeQ=";
@@ -651,11 +654,11 @@ lib.composeManyExtensions [
               CRYPTOGRAPHY_DONT_BUILD_RUST = "1";
             } // lib.optionalAttrs (lib.versionAtLeast old.version "3.5" && !isWheel) rec {
               cargoDeps =
-                pkgs.rustPlatform.fetchCargoTarball {
+                pkgs.rustPlatform.fetchCargoVendor {
                   inherit (old) src;
                   sourceRoot = "${old.pname}-${old.version}/${cargoRoot}";
                   name = "${old.pname}-${old.version}";
-                  inherit sha256;
+                  hash = sha256;
                 };
               cargoRoot = if lib.versionAtLeast old.version "44" then "." else "src/rust";
             }
@@ -2073,6 +2076,7 @@ lib.composeManyExtensions [
             };
 
             cargoHash = {
+              # These should likely still be updated since the update to fetchCargoVendor:
               "3.10.7" = "sha256-MACmdptHmnifBTfB5s+CY6npAOFIrh0zvrIImYghGsw=";
               "3.10.6" = "sha256-SNdwqb47dJ084TMNsm2Btks1UCDerjSmSrQQUiGbx50=";
               "3.10.5" = "sha256-yhLKw4BhdIHgcu4iVlXQlHk/8J+3NK6LlmSWbm/5y4Q=";
@@ -2100,10 +2104,10 @@ lib.composeManyExtensions [
           in
           {
             inherit src;
-            cargoDeps = pkgs.rustPlatform.fetchCargoTarball {
+            cargoDeps = pkgs.rustPlatform.fetchCargoVendor {
               inherit src;
               name = "${old.pname}-${old.version}";
-              sha256 = cargoHash;
+              hash = cargoHash;
             };
             nativeBuildInputs = old.nativeBuildInputs or [ ] ++ [
               pkgs.rustPlatform.cargoSetupHook # handles `importCargoLock`
@@ -2368,14 +2372,15 @@ lib.composeManyExtensions [
       pycrdt =
         let
           hashes = {
+            # These should likely still be updated since the update to fetchCargoVendor:
             "0.9.11" = "sha256-qKrYCkSP8f/oQytfc1xvBX6gt26D3Z/5bbzKPO0e0tQ=";
           };
         in
         prev.pycrdt.overridePythonAttrs (old: {
-          cargoDeps = pkgs.rustPlatform.fetchCargoTarball {
+          cargoDeps = pkgs.rustPlatform.fetchCargoVendor {
             inherit (old) src;
             name = "${old.pname}-${old.version}";
-            sha256 = hashes.${old.version};
+            hash = hashes.${old.version};
           };
 
           buildInputs = old.buildInputs or [ ] ++ lib.optionals stdenv.isDarwin [
@@ -3295,6 +3300,7 @@ lib.composeManyExtensions [
       rpds-py =
         let
           getCargoHash = version: {
+            # These should likely still be updated since the update to fetchCargoVendor:
             "0.8.8" = "sha256-jg9oos4wqewIHe31c3DixIp6fssk742kqt4taWyOq4U=";
             "0.8.10" = "sha256-D4pbEipVn1r5rrX+wDXi97nDZJyBlkdqhmbJSgQGTLU=";
             "0.8.11" = "sha256-QZNm/b9s/qr3GHwe9wG7U9/AaQwSPHsQ0F2SFQdgPNo=";
@@ -3334,7 +3340,7 @@ lib.composeManyExtensions [
           );
         in
         prev.rpds-py.overridePythonAttrs (old: lib.optionalAttrs (!(old.src.isWheel or false)) {
-          cargoDeps = pkgs.rustPlatform.fetchCargoTarball {
+          cargoDeps = pkgs.rustPlatform.fetchCargoVendor {
             inherit (old) src;
             name = "${old.pname}-${old.version}";
             hash = getCargoHash old.version;
@@ -3664,7 +3670,7 @@ lib.composeManyExtensions [
                       lockFile = "${src.out}/Cargo.lock";
                     } // (if hash == null then { } else hash)
                   ) else
-                pkgs.rustPlatform.fetchCargoTarball {
+                pkgs.rustPlatform.fetchCargoVendor {
                   name = "ruff-${old.version}-cargo-deps";
                   inherit src hash;
                 };
@@ -4086,6 +4092,7 @@ lib.composeManyExtensions [
           sha256 = getRepoHash prev.watchfiles.version;
 
           getCargoHash = version: {
+            # These should likely still be updated since the update to fetchCargoVendor:
             "0.24.0".outputHashes = {
               "notify-6.1.1" = "sha256-lT3R5ZQpjx52NVMEKTTQI90EWT16YnbqphqvZmNpw/I=";
             };
@@ -4103,7 +4110,7 @@ lib.composeManyExtensions [
               owner = "samuelcolvin";
               repo = "watchfiles";
               rev = "v${old.version}";
-              inherit sha256;
+              hash = sha256;
             };
 
             cargoDeps = let hash = getCargoHash prev.watchfiles.version; in
@@ -4112,7 +4119,7 @@ lib.composeManyExtensions [
                   ({
                     lockFile = "${src.out}/Cargo.lock";
                   } // (lib.optionalAttrs (lib.isAttrs hash) hash)) else
-                pkgs.rustPlatform.fetchCargoTarball {
+                pkgs.rustPlatform.fetchCargoVendor {
                   name = "watchfiles-${old.version}-cargo-deps";
                   inherit src hash;
                 };
