@@ -26240,6 +26240,9 @@
   "types-python-jose": [
     "setuptools"
   ],
+  "types-pymysql": [
+    "setuptools"
+  ],
   "types-pytz": [
     "setuptools"
   ],
