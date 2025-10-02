@@ -69,7 +69,8 @@ fix (self: {
       false
     else if compareVersions "${sysMajor}.${sysMinor}" "${tagMajor}.${tagMinor}" < 0 then
       false
-    else if pep599.manyLinuxTargetMachines.${tagArch} != platform.parsed.cpu.name then
+    # quick patch, should update vendored dependency 'properly'
+    else if (pep599.manyLinuxTargetMachines.${tagArch} or tagArch) != platform.parsed.cpu.name then
       false
     else
       true;
