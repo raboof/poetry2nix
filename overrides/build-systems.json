@@ -16800,6 +16800,9 @@
   "py-nightscout": [
     "setuptools"
   ],
+  "py-ocsf-models": [
+    "poetry-core"
+  ],
   "py-partiql-parser": [
     "hatchling",
     "setuptools"
