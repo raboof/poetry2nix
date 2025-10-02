@@ -5734,7 +5734,7 @@
     "setuptools"
   ],
   "django-stubs-ext": [
-    "setuptools"
+    "hatchling"
   ],
   "django-tables2": [
     "setuptools"
