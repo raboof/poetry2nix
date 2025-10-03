@@ -9861,6 +9861,10 @@
   "ipython-genutils": [
     "setuptools"
   ],
+  "ipython-pygments-lexers": [
+    "flit-core",
+    "setuptools"
+  ],
   "ipython-sql": [
     "setuptools"
   ],
