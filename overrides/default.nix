@@ -3298,6 +3298,7 @@ lib.composeManyExtensions [
           getCargoHash = version: {
             # These have been updated since the switch to fetchCargoVender:
             "0.27.0" = "sha256-OETVx/aMFB0s1iKHEI+Mv2QShjkp3xED14nHTdzdfBA=";
+            "0.27.1" = "sha256-xK4Lj7wZtI8rXTch9J3+olNiaAZ7sHkKVB8Hthe70XM=";
             # These should likely still be updated since the update to fetchCargoVendor:
             "0.8.8" = "sha256-jg9oos4wqewIHe31c3DixIp6fssk742kqt4taWyOq4U=";
             "0.8.10" = "sha256-D4pbEipVn1r5rrX+wDXi97nDZJyBlkdqhmbJSgQGTLU=";
