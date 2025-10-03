@@ -5813,7 +5813,7 @@
     "setuptools-scm"
   ],
   "djangorestframework-stubs": [
-    "uv",
+    "uv_build",
     "setuptools"
   ],
   "djangorestframework-types": [
